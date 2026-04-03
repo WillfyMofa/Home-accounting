@@ -17,7 +17,7 @@
 ![photo_5_2026-04-03_21-30-57](https://github.com/user-attachments/assets/af93a016-3304-479e-bf48-58071d75749a)
 
 ## Профиль
-![photo_7_2026-04-03_21-30-57](https://github.com/user-attachments/assets/600f5e71-a91e-4099-bcb5-d82d0c0b0dac)
 ![photo_6_2026-04-03_21-30-57](https://github.com/user-attachments/assets/caf6af2f-95cb-41a7-970c-01d1af4d4b8d)
+![photo_7_2026-04-03_21-30-57](https://github.com/user-attachments/assets/600f5e71-a91e-4099-bcb5-d82d0c0b0dac)
 ![photo_8_2026-04-03_21-30-57](https://github.com/user-attachments/assets/0f2cdb30-adc6-47da-a4d4-314d02704525)
 
