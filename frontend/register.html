@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя бухгалтерия | Регистрация</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <i class="fas fa-wallet"></i>
+                <h1>Домашняя бухгалтерия</h1>
+                <p>Создайте новый аккаунт</p>
+            </div>
+            
+            <form class="auth-form" id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Имя</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Иван" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Фамилия</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Иванов">
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login">Логин</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="login" name="login" class="form-control" placeholder="Придумайте логин" required>
+                    </div>
+                    <div class="error-message" id="loginError"></div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Не менее 8 символов" required>
+                        </div>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Подтвердите пароль</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Повторите пароль" required>
+                        </div>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+                </div>
+                
+                <!-- Блок требований к паролю -->
+                <div class="password-requirements" id="passwordRequirements">
+                    <p><strong>Требования к паролю:</strong></p>
+                    <div class="requirement" id="req-length">
+                        <i class="fas fa-circle"></i>
+                        <span>Минимум 8 символов</span>
+                    </div>
+                    <div class="requirement" id="req-uppercase">
+                        <i class="fas fa-circle"></i>
+                        <span>Заглавные и строчные буквы</span>
+                    </div>
+                    <div class="requirement" id="req-number">
+                        <i class="fas fa-circle"></i>
+                        <span>Хотя бы одна цифра</span>
+                    </div>
+                    <div class="requirement" id="req-special">
+                        <i class="fas fa-circle"></i>
+                        <span>Без специальных символов (!@#$%^&*)</span>
+                    </div>
+                </div>
+                
+                <!-- Сила пароля -->
+                <div class="password-strength" id="passwordStrength">
+                    <div class="strength-label">
+                        <span>Надёжность пароля:</span>
+                        <span class="strength-text" id="strengthText">Очень слабый</span>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                    <i class="fas fa-user-plus"></i> Зарегистрироваться
+                </button>
+                
+                <div class="success-message" id="successMessage"></div>
+                
+                <div class="auth-footer">
+                    <p>Уже есть аккаунт? <a href="login.html">Войдите</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

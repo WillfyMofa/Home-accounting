@@ -1,0 +1,223 @@
+/* css/auth.css - ОПТИМИЗИРОВАННЫЙ */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.auth-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header i {
+    font-size: 48px;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.auth-header h1 {
+    margin: 0;
+    color: #333;
+    font-size: 28px;
+}
+
+.auth-header p {
+    color: #666;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.auth-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.auth-form .btn-block {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.auth-footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для валидации */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.success-message {
+    color: #2ecc71;
+    font-size: 14px;
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(46, 204, 113, 0.1);
+    border-radius: 6px;
+    display: none;
+}
+
+.warning-message {
+    color: #f39c12;
+    font-size: 12px;
+    margin-top: 5px;
+    animation: fadeIn 0.3s ease;
+}
+
+.password-requirements {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.password-requirements p {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.requirement i {
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.requirement.valid {
+    color: #2ecc71;
+}
+
+.requirement.invalid {
+    color: #e74c3c;
+}
+
+.password-strength {
+    margin: 15px 0 20px 0;
+}
+
+.strength-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #666;
+}
+
+.strength-text {
+    font-weight: 500;
+}
+
+.strength-bar {
+    height: 6px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    width: 0%;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-with-icon input {
+    padding-left: 40px;
+}
+
+/* Темная тема для страниц авторизации */
+.dark-theme .auth-card {
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+}
+
+.dark-theme .auth-header h1 {
+    color: #ffffff;
+}
+
+.dark-theme .auth-header p {
+    color: #b0b0b0;
+}
+
+.dark-theme .auth-footer {
+    border-top-color: #404040;
+}
+
+.dark-theme .auth-footer p {
+    color: #b0b0b0;
+}
+
+.dark-theme .password-requirements {
+    background-color: #252525;
+    border-color: #404040;
+    color: #cccccc;
+}
+
+.dark-theme .password-requirements p {
+    color: #ffffff;
+}
+
+.dark-theme .strength-label {
+    color: #cccccc;
+}
+
+.dark-theme .strength-bar {
+    background-color: #3a3a3a;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

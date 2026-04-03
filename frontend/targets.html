@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя бухгалтерия | Цели</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/targets.css">
+    <!-- Используем локальную версию Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                    <h1>Домашняя бухгалтерия</h1>
+                </div>
+                <nav class="nav">
+                    <a href="main.html" class="nav-link">
+                        <i class="fas fa-home"></i> Главная
+                    </a>
+                    <a href="stats.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i> Статистика
+                    </a>
+                    <a href="targets.html" class="nav-link active">
+                        <i class="fas fa-bullseye"></i> Цели
+                    </a>
+                    <a href="operations.html" class="nav-link">
+                        <i class="fas fa-history"></i> Операции
+                    </a>
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="tabs pill-style">
+                <button class="tab-btn active" data-tab="active">Активные цели</button>
+                <button class="tab-btn" data-tab="completed">Выполненные</button>
+                <button class="tab-btn" data-tab="all">Все цели</button>
+            </div>
+            
+            <section class="targets-list" id="targetsList">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i> Загрузка целей...
+                </div>
+            </section>
+
+            <section class="add-target-form" id="addTargetForm">
+                <h3><i class="fas fa-plus-circle"></i> Новая цель</h3>
+                <form class="target-form" id="targetForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="targetName">Название цели</label>
+                            <input type="text" id="targetName" class="form-control" placeholder="Например: Новый ноутбук" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="targetAmount">Целевая сумма</label>
+                            <input type="number" id="targetAmount" class="form-control" placeholder="0.00" min="0.01" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Создать цель
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Домашняя бухгалтерия. Все права защищены.</p>
+            <p>Версия 1.0.0 | Благодарите за создание этого шедевра не менее шедевральную Алину</p>
+        </div>
+    </footer>
+
+    <!-- Встроенный JS для инициализации -->
+    <script>
+        console.log('=== targets.html: Начало выполнения ===');
+        
+        // Проверяем авторизацию
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('❌ Нет токена! Перенаправляем...');
+            window.location.href = 'login.html';
+        } else {
+            console.log('✅ Токен найден');
+        }
+        
+        // Глобальные переменные
+        window.API_BASE_URL = 'http://localhost:3000/api';
+        window.currentTab = 'active';
+        window.targetsData = [];
+    </script>
+
+
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/target.js"></script>
+    <script src="js/targets.js" onload="console.log('✅ targets.js загружен'); 
+                                         if (typeof initTargetsPage === 'function') {
+                                             console.log('✅ initTargetsPage доступна, запускаем...');
+                                             setTimeout(initTargetsPage, 100);
+                                         } else {
+                                             console.error('❌ initTargetsPage все еще не определена!');
+                                         }" 
+            onerror="console.error('❌ Ошибка загрузки targets.js')"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== targets.html: DOM полностью загружен ===');
+            
+            // Проверяем, что targets.js загрузился
+            setTimeout(function() {
+                if (typeof initTargetsPage === 'function' && 
+                    initTargetsPage.toString().includes('initTargetsPage()')) {
+                    console.log('✅ initTargetsPage готова к использованию');
+                } else {
+                    console.error('❌ initTargetsPage не загрузилась правильно');
+                    
+                    // Пробуем загрузить вручную
+                    const script = document.createElement('script');
+                    script.src = 'js/targets.js';
+                    script.onload = function() {
+                        console.log('✅ targets.js перезагружен');
+                        if (typeof initTargetsPage === 'function') {
+                            initTargetsPage();
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            }, 500);
+        });
+    </script>
+    <script>
+    // Проверяем, что targets.js загрузился
+    if (typeof initTargetsPage !== 'function') {
+        console.error('❌ targets.js не загрузился корректно!');
+        
+        // Пробуем перезагрузить скрипт
+        var script = document.createElement('script');
+        script.src = 'targets.js?v=' + new Date().getTime();
+        script.onload = function() {
+            console.log('✅ targets.js перезагружен, запускаем инициализацию...');
+            if (typeof initTargetsPage === 'function') {
+                setTimeout(initTargetsPage, 100);
+            }
+        };
+        document.head.appendChild(script);
+    } else {
+        console.log('✅ targets.js уже загружен');
+    }
+    </script>
+
+
+    <!-- Модальное окно редактирования цели -->
+    <div id="editTargetModal" class="edit-modal">
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h3><i class="fas fa-edit"></i> Редактировать цель</h3>
+                <button class="edit-modal-close" id="closeEditModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="edit-modal-body">
+                <form id="editTargetForm">
+                    <div class="form-group">
+                        <label for="editTargetName">Название цели</label>
+                        <input type="text" id="editTargetName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editTargetAmount">Целевая сумма</label>
+                        <input type="number" id="editTargetAmount" class="form-control" min="0.01" step="0.01" required>
+                    </div>
+                    
+                    <input type="hidden" id="editTargetId">
+                </form>
+                
+                <div class="target-info" id="editTargetInfo" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; display: none;">
+                    <p><strong>Текущая сумма:</strong> <span id="editCurrentAmountDisplay">0</span> ₽</p>
+                    <p><strong>Прогресс:</strong> <span id="editProgressDisplay">0</span>%</p>
+                </div>
+            </div>
+            
+            <div class="edit-modal-actions">
+                <button type="button" class="btn btn-secondary" id="cancelEdit">Отмена</button>
+                <button type="button" class="btn btn-primary" id="saveTarget">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

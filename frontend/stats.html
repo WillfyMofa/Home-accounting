@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя бухгалтерия | Статистика</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js библиотека для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                    <h1>Домашняя бухгалтерия</h1>
+                </div>
+                <nav class="nav">
+                    <a href="main.html" class="nav-link" data-page="dashboard">
+                        <i class="fas fa-home"></i> Главная
+                    </a>
+                    <a href="stats.html" class="nav-link active" data-page="stats">
+                        <i class="fas fa-chart-pie"></i> Статистика
+                    </a>
+                    <a href="targets.html" class="nav-link" data-page="targets">
+                        <i class="fas fa-bullseye"></i> Цели
+                    </a>
+                    <a href="operations.html" class="nav-link" data-page="operations">
+                        <i class="fas fa-history"></i> Операции
+                    </a>
+                    <a href="settings.html" class="nav-link" data-page="settings">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <div class="container">
+            <!-- Динамика расходов и доходов -->
+            <section class="dynamics-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Динамика расходов и доходов</h2>
+                    <div class="chart-controls">
+                        <div class="toggle-switches">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showIncome" checked>
+                                <label for="showIncome" class="toggle-label income">
+                                    <span class="toggle-icon"><i class="fas fa-arrow-up"></i></span>
+                                    <span class="toggle-text">Доходы</span>
+                                </label>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showExpense" checked>
+                                <label for="showExpense" class="toggle-label expense">
+                                    <span class="toggle-icon"><i class="fas fa-arrow-down"></i></span>
+                                    <span class="toggle-text">Расходы</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="dynamicsChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Распределение по категориям -->
+            <section class="categories-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-pie"></i> Распределение по категориям</h2>
+                    <div class="category-type-selector">
+                        <select id="categoryTypeSelect" class="form-control">
+                            <option value="expense">Расходы</option>
+                            <option value="income">Доходы</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="categories-content">
+                    <div class="chart-container pie-chart">
+                        <canvas id="categoriesChart"></canvas>
+                    </div>
+                    <div class="categories-list" id="categoriesList">
+                        <!-- Список категорий будет заполняться динамически -->
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i> Загрузка категорий...
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Домашняя бухгалтерия. Все права защищены.</p>
+            <p>Версия 1.0.0 | Благодарите за создание этого шедевра не менее шедевральную Алину</p>
+        </div>
+    </footer>
+
+    <!-- Подключаем скрипты -->
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/stats.js"></script>
+    
+    <script>
+        console.log('=== stats.html: Начало выполнения ===');
+        
+        // Проверяем авторизацию
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('❌ Нет токена! Перенаправляем...');
+            window.location.href = 'login.html';
+        } else {
+            console.log('✅ Токен найден');
+        }
+        
+        // Определяем API_BASE_URL
+        window.API_BASE_URL = 'http://localhost:3000/api';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== stats.html: DOM полностью загружен ===');
+            
+            // Инициализируем статистику
+            if (typeof initStatsPage === 'function') {
+                initStatsPage();
+            } else {
+                console.error('❌ Функция initStatsPage не найдена');
+            }
+        });
+    </script>
+</body>
+</html>

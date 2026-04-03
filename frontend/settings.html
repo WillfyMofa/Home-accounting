@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя бухгалтерия | Настройки</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                    <h1>Домашняя бухгалтерия</h1>
+                </div>
+                <nav class="nav">
+                    <a href="main.html" class="nav-link">
+                        <i class="fas fa-home"></i> Главная
+                    </a>
+                    <a href="stats.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i> Статистика
+                    </a>
+                    <a href="targets.html" class="nav-link">
+                        <i class="fas fa-bullseye"></i> Цели
+                    </a>
+                    <a href="operations.html" class="nav-link">
+                        <i class="fas fa-history"></i> Операции
+                    </a>
+                    <a href="settings.html" class="nav-link active">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <h2 class="page-title"><i class="fas fa-user-cog"></i> Настройки профиля</h2>
+            
+            <div class="settings-layout">
+                <!-- Левая колонка - меню настроек -->
+                <aside class="settings-sidebar">
+                    <nav class="settings-nav">
+                        <a href="#profile" class="settings-nav-link active">  <!--style="display: none;"-->
+                            <i class="fas fa-user"></i> Профиль
+                        </a>
+                        <a href="#security" class="settings-nav-link">
+                            <i class="fas fa-shield-alt"></i> Безопасность
+                        </a>
+                        <a href="#system" class="settings-nav-link">
+                            <i class="fas fa-sliders-h"></i> Системные настройки
+                        </a>
+                        <a href="#admin" class="settings-nav-link admin-only">
+                            <i class="fas fa-user-shield"></i> Администрирование
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Правая колонка - контент -->
+                <div class="settings-content">
+                    <!-- Вкладка профиля -->
+                    <section id="profile" class="settings-section active">
+                        <div class="section-header">
+                            <div class="section-header-title">
+                                <h3><i class="fas fa-user"></i> Личные данные</h3>
+                            </div>
+                            <!-- Кнопка выхода справа от заголовка -->
+                            <button class="logout-btn-header" id="profileLogoutBtn" title="Выйти из аккаунта">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                        
+                        <form class="profile-form">
+                            <div class="avatar-section">
+                                <div class="avatar-preview">
+                                    <div class="avatar">
+                                        <i class="fas fa-user fa-3x"></i>
+                                    </div>
+                                    <div class="avatar-info">
+                                        <h4>Брежнева Алина</h4>
+                                        <p class="user-email">genshinforever112@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Имя</label>
+                                    <input type="text" id="firstName" class="form-control" value="Алина">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Фамилия</label>
+                                    <input type="text" id="lastName" class="form-control" value="Брежнева">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="currency">Основная валюта</label>
+                                <select id="currency" class="form-control">
+                                    <option value="RUB" selected>Рубль (RUB)</option>
+                                    <option value="USD">Доллар (USD)</option>
+                                    <option value="EUR">Евро (EUR)</option>
+                                    <option value="KZT">Тенге (KZT)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Отмена</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Сохранить изменения
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Вкладка безопасности -->
+                    <section id="security" class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-shield-alt"></i> Безопасность</h3>
+                        </div>
+                        
+                        <form class="security-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Текущий пароль</label>
+                                <input type="password" id="currentPassword" class="form-control" required>
+                                <div class="error-message" id="currentPasswordError"></div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="newPassword">Новый пароль</label>
+                                    <input type="password" id="newPassword" class="form-control" required minlength="8">
+                                    <div class="password-strength" id="passwordStrength">
+                                        <div class="strength-bar">
+                                            <div class="strength-fill" id="strengthFill"></div>
+                                        </div>
+                                        <span class="strength-text" id="strengthText">Введите пароль</span>
+                                    </div>
+                                    <div class="error-message" id="newPasswordError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Подтвердите пароль</label>
+                                    <input type="password" id="confirmPassword" class="form-control" required minlength="8">
+                                    <div class="error-message" id="confirmPasswordError"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="password-requirements">
+                                <p><strong>Требования к паролю:</strong></p>
+                                <ul>
+                                    <li id="req-length">Не менее 8 символов</li>
+                                    <li id="req-uppercase">Хотя бы одна заглавная буква</li>
+                                    <li id="req-lowercase">Хотя бы одна строчная буква</li>
+                                    <li id="req-number">Хотя бы одна цифра</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-key"></i> Сменить пароль
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                    <!-- Системные настройки -->
+                    <section id="system" class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-sliders-h"></i> Системные настройки</h3>
+                        </div>
+                        
+                        <div class="system-settings">
+                            <!-- Настройки темы -->
+                            <div class="setting-group">
+                                <div class="setting-header">
+                                    <h4><i class="fas fa-palette"></i> Внешний вид</h4>
+                                    <p>Настройте внешний вид приложения</p>
+                                </div>
+                                
+                                <div class="setting-options">
+                                    <!-- Замените этот блок в секции system (начиная примерно с 256 строки) -->
+                                    <div class="theme-selector">
+                                        <h5>Цветовая тема</h5>
+                                        <div class="theme-options">
+                                            <label class="theme-option" data-theme="light">
+                                                <div class="theme-preview light-theme">
+                                                    <div class="preview-header"></div>
+                                                    <div class="preview-content">
+                                                        <div class="preview-card"></div>
+                                                        <div class="preview-card"></div>
+                                                    </div>
+                                                </div>
+                                                <span class="theme-name">Светлая</span>
+                                                <input type="radio" name="theme" value="light" id="theme-light">
+                                            </label>
+                                            
+                                            <label class="theme-option" data-theme="dark">
+                                                <div class="theme-preview dark-theme">
+                                                    <div class="preview-header"></div>
+                                                    <div class="preview-content">
+                                                        <div class="preview-card"></div>
+                                                        <div class="preview-card"></div>
+                                                    </div>
+                                                </div>
+                                                <span class="theme-name">Тёмная</span>
+                                                <input type="radio" name="theme" value="dark" id="theme-dark">
+                                            </label>
+                                            
+                                            <label class="theme-option" data-theme="auto">
+                                                <div class="theme-preview auto-theme">
+                                                    <div class="preview-left light-theme">
+                                                        <div class="preview-header"></div>
+                                                        <div class="preview-content">
+                                                            <div class="preview-card"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="preview-right dark-theme">
+                                                        <div class="preview-header"></div>
+                                                        <div class="preview-content">
+                                                            <div class="preview-card"></div>
+                                                        </div>
+                                                    </div>
+                                                    <i class="fas fa-desktop"></i>
+                                                </div>
+                                                <span class="theme-name">Авто</span>
+                                                <input type="radio" name="theme" value="auto" id="theme-auto">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="accent-color-selector">
+                                        <h5>Акцентный цвет</h5>
+                                        <div class="color-options">
+                                            <div class="color-option" data-color="#4361ee" style="background-color: #4361ee;"></div>
+                                            <div class="color-option" data-color="#2ecc71" style="background-color: #2ecc71;"></div>
+                                            <div class="color-option" data-color="#e74c3c" style="background-color: #e74c3c;"></div>
+                                            <div class="color-option" data-color="#f39c12" style="background-color: #f39c12;"></div>
+                                            <div class="color-option" data-color="#9b59b6" style="background-color: #9b59b6;"></div>
+                                            <div class="color-option" data-color="#1abc9c" style="background-color: #1abc9c;"></div>
+                                        </div>
+                                        <input type="color" id="customColor" class="color-picker" value="#4361ee">
+                                        <label for="customColor" class="custom-color-label">
+                                            <i class="fas fa-eyedropper"></i> Выбрать свой цвет
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Настройки языка -->
+                            <div class="setting-group">
+                                <div class="setting-header">
+                                    <h4><i class="fas fa-language"></i> Язык</h4>
+                                    <p>Выберите язык интерфейса</p>
+                                </div>
+                                
+                                <div class="setting-options">
+                                    <div class="language-selector">
+                                        <div class="form-group">
+                                            <label for="language">Язык интерфейса</label>
+                                            <select id="language" class="form-control">
+                                                <option value="ru" selected>Русский</option>
+                                                <option value="en">English</option>
+                                                <option value="zh">汉语</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-actions">
+                                <button type="button" class="btn btn-primary" id="saveSystemSettings">
+                                    <i class="fas fa-save"></i> Сохранить настройки
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="admin" class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-user-shield"></i> Администрирование</h3>
+                        </div>
+                        
+                        <div class="admin-container">
+                            <!-- Раздел Категории -->
+                            <div class="admin-section">
+                                <div class="section-header">
+                                    <h4><i class="fas fa-tags"></i> Управление категориями</h4>
+                                    <button class="btn btn-primary btn-sm" id="add-category-admin">
+                                        <i class="fas fa-plus"></i> Добавить категорию
+                                    </button>
+                                </div>
+                                
+                                <div class="scrollable-container">
+                                    <div class="categories-manager admin-scrollable">
+                                        <!-- Категории будут загружаться динамически -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Раздел Пользователи -->
+                            <div class="admin-section">
+                                <div class="section-header">
+                                    <h4><i class="fas fa-users"></i> Управление пользователями</h4>
+                                    <div class="search-box">
+                                        <input type="text" id="user-search" class="form-control" 
+                                            placeholder="Поиск по логину, имени, фамилии...">
+                                        <button class="btn btn-icon">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="scrollable-container">
+                                    <div class="table-container admin-scrollable">
+                                        <table class="users-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Логин</th>
+                                                    <th>Имя</th>
+                                                    <th>Фамилия</th>
+                                                    <th>Роль</th>
+                                                    <th>Действия</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="users-list">
+                                                <!-- Пользователи будут загружаться динамически -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Раздел Логи -->
+                            <div class="admin-section">
+                                <div class="section-header">
+                                    <h4><i class="fas fa-history"></i> История логов</h4>
+                                    <div class="search-box">
+                                        <input type="text" id="log-search" class="form-control" 
+                                            placeholder="Поиск по ID пользователя...">
+                                        <button class="btn btn-icon">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="scrollable-container">
+                                    <div class="table-container admin-scrollable">
+                                        <table class="logs-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Пользователь</th>
+                                                    <th>Действие</th>
+                                                    <th>Дата</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="logs-list">
+                                                <!-- Логи будут загружаться динамически -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Домашняя бухгалтерия. Все права защищены.</p>
+            <p>Версия 1.0.0 | Благодарите за создание этого шедевра не менее шедевральную Алину</p>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/admin-frontend.js"></script>
+    <script src="js/translations.js"></script>
+    <!-- <script src="js/admin-test.js"></script> -->
+</body>
+</html>

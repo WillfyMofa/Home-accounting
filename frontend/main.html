@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя бухгалтерия | Главная</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/targets.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                    <h1>Домашняя бухгалтерия</h1>
+                </div>
+                <nav class="nav">
+                    <a href="main.html" class="nav-link active" data-page="dashboard">
+                        <i class="fas fa-home"></i> Главная
+                    </a>
+                    <a href="stats.html" class="nav-link" data-page="stats">
+                        <i class="fas fa-chart-pie"></i> Статистика
+                    </a>
+                    <a href="targets.html" class="nav-link" data-page="targets">
+                        <i class="fas fa-bullseye"></i> Цели
+                    </a>
+                    <a href="operations.html" class="nav-link" data-page="operations">
+                        <i class="fas fa-history"></i> Операции
+                    </a>
+                    <a href="settings.html" class="nav-link" data-page="settings">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <div class="container">
+            <!-- Блок статистики -->
+            <section class="stats-section">
+                <h2><i class="fas fa-chart-line"></i> Общая статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-card balance">
+                        <h3>Баланс</h3>
+                        <p class="amount">+ 0,00 ₽</p>
+                        <span class="period">текущий</span>
+                    </div>
+                    <div class="stat-card income">
+                        <h3>Доходы</h3>
+                        <p class="amount">+ 0,00 ₽</p>
+                        <span class="period">за последний месяц</span>
+                    </div>
+                    <div class="stat-card expense">
+                        <h3>Расходы</h3>
+                        <p class="amount">- 0,00 ₽</p>
+                        <span class="period">за последний месяц</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Блок целей -->
+            <section class="targets-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bullseye"></i> Мои цели</h2>
+                    <button class="btn btn-secondary" id="addNewGoalBtn">
+                        <i class="fas fa-plus"></i> Новая цель
+                    </button>
+                </div>
+                <div class="targets-list" id="mainTargetsList">
+                    <!-- Цели будут загружаться динамически -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i> Загрузка целей...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Блок добавления операции (аналогичный operations.html) -->
+            <section class="quick-add">
+                <h2><i class="fas fa-plus-circle"></i> Добавить операцию</h2>
+                <form id="quick-form" class="quick-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="type">Тип операции</label>
+                            <select id="type" class="form-control" required>
+                                <option value="true">Доход</option>
+                                <option value="false">Расход</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Сумма</label>
+                            <input type="number" id="amount" class="form-control" placeholder="0.00" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Категория</label>
+                            <div class="category-combobox">
+                                <input type="text" 
+                                    id="category" 
+                                    class="form-control category-input"
+                                    placeholder="Начните вводить название..."
+                                    autocomplete="off"
+                                    required>
+                                <div class="suggestions-box" id="categorySuggestionsBox">
+                                    <!-- Подсказки будут появляться динамически -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Дата</label>
+                            <input type="date" id="date" class="form-control" placeholder="Текущая дата">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Описание</label>
+                        <input type="text" id="description" class="form-control" placeholder="Краткое описание..." maxlength="255">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Добавить запись
+                    </button>
+                </form>
+            </section>
+
+            <!-- Блок последних операций -->
+            <section class="transactions-section">
+                <h2><i class="fas fa-history"></i> Последние операции</h2>
+                <div class="table-container">
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Тип</th>
+                                <th>Категория</th>
+                                <th>Описание</th>
+                                <th>Сумма</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="operationsTableBody">
+                            <!-- Данные будут подгружаться из API -->
+                            <tr class="loading-row">
+                                <td colspan="6" style="text-align: center; padding: 40px;">
+                                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                                    <p>Загрузка операций...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Домашняя бухгалтерия. Все права защищены.</p>
+            <p>Версия 1.0.0 | Благодарите за создание этого шедевра не менее шедевральную Алину</p>
+        </div>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/category-autocomplete.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/modal-manager.js"></script>
+    <script src="js/main-targets.js"></script>
+    <script src="js/main-operations.js"></script>
+    
+    <script>
+        console.log('=== main.html: Начало выполнения ===');
+        
+        // Проверяем авторизацию
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('❌ Нет токена! Перенаправляем...');
+            window.location.href = 'login.html';
+        } else {
+            console.log('✅ Токен найден');
+        }
+        
+        // Определяем API_BASE_URL
+        window.API_BASE_URL = 'http://localhost:3000/api';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== main.html: DOM полностью загружен ===');
+            
+            // Инициализируем цели на главной
+            if (typeof initMainTargets === 'function') {
+                initMainTargets();
+            }
+            
+            // Инициализируем операции на главной
+            if (typeof initMainOperations === 'function') {
+                initMainOperations();
+            }
+            
+            // ДОБАВЬТЕ ЭТО: Периодическое обновление целей (каждые 30 секунд)
+            setInterval(async function() {
+                if (typeof window.refreshMainTargetsAfterOperation === 'function') {
+                    await window.refreshMainTargetsAfterOperation();
+                }
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

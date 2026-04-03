@@ -1,0 +1,1705 @@
+/* targets.css - Стили для страницы целей */
+
+/* Стили для статистики */
+.targets-stats {
+    margin-bottom: 2rem;
+}
+
+.targets-stats .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+}
+
+.stat-card.income {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.stat-card.expense {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.stat-card.balance {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.stat-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.stat-card .amount {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card .period {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Стили для списка целей */
+.targets-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.target-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.target-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.target-card.completed {
+    border-color: var(--success-color);
+    background-color: rgba(46, 204, 113, 0.05);
+}
+
+.target-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.target-title {
+    flex: 1;
+}
+
+.target-title h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--dark-color);
+    word-break: break-word;
+}
+
+.target-title h3 i {
+    margin-right: 8px;
+}
+
+.target-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.target-progress {
+    margin: 1rem 0;
+}
+
+.progress-info {
+    margin-bottom: 0.5rem;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.progress-text .current {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.progress-text .total {
+    color: var(--gray-color);
+}
+
+.progress-text .percent {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.target-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--success-color);
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Стили для загрузки и пустого состояния */
+.loading-spinner {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray-color);
+    font-size: 1.1rem;
+}
+
+.loading-spinner i {
+    margin-right: 10px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.empty-state p {
+    color: var(--gray-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Стили для формы */
+.add-target-form {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+.add-target-form h3 {
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.modal-close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--gray-color);
+    background: none;
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--dark-color);
+    background-color: var(--border-color);
+}
+
+.modal-form {
+    margin-top: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Темная тема */
+body.dark-theme .target-card {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .target-card.completed {
+    background-color: rgba(46, 204, 113, 0.1);
+    border-color: #2ecc71;
+}
+
+body.dark-theme .target-header {
+    border-bottom-color: #404040;
+}
+
+body.dark-theme .empty-state {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .add-target-form {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .modal-content {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .modal-header {
+    border-bottom-color: #404040;
+}
+
+body.dark-theme .modal-actions {
+    border-top-color: #404040;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .targets-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .targets-stats .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .modal-actions button {
+        width: 100%;
+    }
+}
+
+/* Дополнительные стили для целей */
+
+/* Прогресс-бар */
+.progress-bar {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+/* Кнопки */
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-icon.edit {
+    color: var(--primary-color);
+}
+
+.btn-icon.delete {
+    color: var(--danger-color);
+}
+
+/* Описание цели */
+.target-description {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    color: var(--gray-color);
+}
+
+/* Кнопки в футере карточки */
+.target-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .target-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .target-footer button {
+        width: 100%;
+    }
+    
+    .target-actions {
+        margin-top: 10px;
+    }
+}
+
+/* Темная тема */
+body.dark-theme .progress-bar {
+    background-color: #404040;
+}
+
+body.dark-theme .target-description {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .btn-outline {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+body.dark-theme .btn-outline:hover {
+    background-color: var(--primary-color);
+    color: #1e1e1e;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.target-card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Уведомления */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.alert-success {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.alert-error {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.alert-info {
+    background-color: #3498db;
+    color: white;
+}
+
+.alert-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+/* Добавить в targets.css */
+
+/* Стили для формы добавления цели */
+.add-target-form {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    margin-top: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.add-target-form h3 {
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-target-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .add-target-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.add-target-form .form-group {
+    margin-bottom: 0;
+}
+
+.add-target-form .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.add-target-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.add-target-form .form-actions {
+    text-align: right;
+}
+
+.add-target-form .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-target-form .btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.add-target-form .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Темная тема для формы */
+body.dark-theme .add-target-form {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .add-target-form .form-control {
+    background-color: #3d3d3d;
+    border-color: #505050;
+    color: white;
+}
+
+body.dark-theme .add-target-form .form-control:focus {
+    border-color: var(--primary-color);
+}
+
+/* targets.css - Дополнение для редактирования целей */
+
+/* Стили для модального окна редактирования */
+.edit-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-modal.show {
+    display: flex;
+}
+
+.edit-modal-content {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+}
+
+.edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.edit-modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.edit-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--gray-color);
+    transition: color 0.3s ease;
+}
+
+.edit-modal-close:hover {
+    color: var(--dark-color);
+}
+
+.edit-modal-body {
+    margin-bottom: 1.5rem;
+}
+
+.edit-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Темная тема для модального окна */
+body.dark-theme .edit-modal-content {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .edit-modal-header {
+    border-bottom-color: #404040;
+}
+
+body.dark-theme .edit-modal-actions {
+    border-top-color: #404040;
+}
+
+.btn-icon.edit {
+    color: var(--primary-color);
+}
+
+.btn-icon.edit:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.btn-icon.delete {
+    color: var(--danger-color);
+}
+
+.btn-icon.delete:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* targets.css - Дополнение */
+
+/* Стили для почти выполненных целей */
+.target-card.almost-completed {
+    border-color: #f39c12;
+    background-color: rgba(243, 156, 18, 0.05);
+}
+
+.target-card.almost-completed .progress-fill {
+    background-color: #f39c12;
+}
+
+/* Стили для блока информации в модальном окне */
+.target-info {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.target-info p {
+    margin: 0.5rem 0;
+}
+
+body.dark-theme .target-info {
+    background-color: #3d3d3d;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+
+.btn-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-icon.edit {
+    color: #3498db;
+}
+
+.btn-icon.edit:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.btn-icon.delete {
+    color: #e74c3c;
+}
+
+.btn-icon.delete:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+}
+/* targets.css - Дополнение для кнопки завершения цели */
+
+/* Стили для бейджа статуса */
+.status-badge {
+    display: inline-block;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Стили для футера карточки цели */
+.target-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+}
+
+/* Кнопка завершения цели */
+.btn-complete {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-complete:hover:not(.disabled) {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+}
+
+.btn-complete:active:not(.disabled) {
+    transform: translateY(0);
+}
+
+.btn-complete.disabled {
+    background-color: #bdc3c7;
+    color: #7f8c8d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-complete i {
+    font-size: 1rem;
+}
+
+/* Адаптивность для кнопки завершения */
+@media (max-width: 576px) {
+    .btn-complete {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Темная тема для кнопки завершения */
+body.dark-theme .btn-complete {
+    background-color: #27ae60;
+}
+
+body.dark-theme .btn-complete:hover:not(.disabled) {
+    background-color: #229954;
+}
+
+body.dark-theme .btn-complete.disabled {
+    background-color: #404040;
+    color: #777;
+}
+
+/* Стили для футера в темной теме */
+body.dark-theme .target-footer {
+    border-top-color: #404040;
+}
+
+/* Дополнение к существующим стилям карточки */
+.target-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 250px; /* Минимальная высота для карточки */
+}
+
+.target-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.target-progress {
+    margin-bottom: 1.5rem;
+}
+
+.target-footer {
+    margin-top: auto;
+}
+
+/* Стили для неактивной кнопки редактирования */
+.btn-icon.edit.disabled {
+    color: #bdc3c7;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn-icon.edit.disabled:hover {
+    background-color: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Стили для блока информации о завершении */
+.completion-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background-color: rgba(46, 204, 113, 0.1);
+    border-radius: var(--radius-md);
+    color: #27ae60;
+    font-weight: 500;
+    width: 100%;
+}
+
+.completion-info i {
+    font-size: 1rem;
+}
+
+/* Темная тема для блока завершения */
+body.dark-theme .completion-info {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+/* Анимация при наведении на активные кнопки */
+.btn-icon.edit:not(.disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.btn-icon.delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* Стили для заголовка с бейджем */
+.target-title h3 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Адаптивность для заголовка */
+@media (max-width: 576px) {
+    .target-title h3 {
+        font-size: 1.1rem;
+    }
+    
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 1px 6px;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 576px) {
+    .target-actions {
+        flex-direction: column;
+    }
+    
+    .btn-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Анимация для модального окна */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.edit-modal-content {
+    animation: modalFadeIn 0.3s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .edit-modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .edit-modal-actions {
+        flex-direction: column;
+    }
+    
+    .edit-modal-actions button {
+        width: 100%;
+    }
+}
+
+/* targets.css - Обновленные цвета иконок действий */
+
+/* Улучшенные стили для кнопок действий */
+.target-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    color: #6c757d; /* Нейтральный серый цвет */
+    border: 1px solid #dee2e6; /* Легкая граница */
+}
+
+.btn-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa; /* Светлый фон при наведении */
+    border-color: #adb5bd;
+}
+
+.btn-icon.edit {
+    color: #6c757d; /* Серый цвет для редактирования */
+}
+
+.btn-icon.edit:hover {
+    color: #495057; /* Темнее при наведении */
+    background-color: #e9ecef;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.15);
+}
+
+.btn-icon.delete {
+    color: #6c757d; /* Серый цвет для удаления */
+}
+
+.btn-icon.delete:hover {
+    color: #dc3545; /* Красный только при наведении */
+    background-color: rgba(220, 53, 69, 0.05);
+    border-color: rgba(220, 53, 69, 0.2);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.1);
+}
+
+/* Темная тема для кнопок */
+body.dark-theme .btn-icon {
+    color: #adb5bd;
+    border-color: #495057;
+    background-color: transparent;
+}
+
+body.dark-theme .btn-icon:hover {
+    background-color: #495057;
+    border-color: #6c757d;
+}
+
+body.dark-theme .btn-icon.edit:hover {
+    color: #f8f9fa;
+    background-color: #495057;
+    box-shadow: 0 4px 12px rgba(173, 181, 189, 0.1);
+}
+
+body.dark-theme .btn-icon.delete:hover {
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-color: rgba(255, 107, 107, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.1);
+}
+
+/* Кнопка завершения цели */
+.btn-complete {
+    background-color: #28a745; /* Зеленый цвет для завершения */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-complete:hover:not(.disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-complete:active:not(.disabled) {
+    transform: translateY(0);
+}
+
+.btn-complete.disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+    cursor: not-allowed;
+}
+
+.btn-complete.disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: #e9ecef;
+}
+
+.btn-complete i {
+    font-size: 1rem;
+}
+
+/* Темная тема для кнопки завершения */
+body.dark-theme .btn-complete {
+    background-color: #2e7d32;
+}
+
+body.dark-theme .btn-complete:hover:not(.disabled) {
+    background-color: #1b5e20;
+    box-shadow: 0 6px 12px rgba(46, 125, 50, 0.3);
+}
+
+body.dark-theme .btn-complete.disabled {
+    background-color: #495057;
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Стили для информационного блока завершения */
+.completion-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    border-radius: var(--radius-md);
+    color: #28a745;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.completion-info i {
+    font-size: 1.1rem;
+}
+
+/* Темная тема для блока завершения */
+body.dark-theme .completion-info {
+    background-color: rgba(46, 125, 50, 0.15);
+    border-color: rgba(46, 125, 50, 0.4);
+    color: #4caf50;
+}
+
+/* Стили для бейджа статуса */
+.status-badge {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Темная тема для бейджа */
+body.dark-theme .status-badge {
+    background-color: #2e7d32;
+}
+
+/* Улучшенные стили для карточек */
+.target-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.target-card:hover {
+    border-color: #adb5bd;
+    box-shadow: var(--shadow-md);
+}
+
+.target-card.completed {
+    border-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.target-card.almost-completed {
+    border-color: #fd7e14;
+    background-color: rgba(253, 126, 20, 0.05);
+}
+
+/* Темная тема для карточек */
+body.dark-theme .target-card {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .target-card.completed {
+    border-color: #2e7d32;
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+body.dark-theme .target-card.almost-completed {
+    border-color: #e65100;
+    background-color: rgba(230, 81, 0, 0.1);
+}
+
+/* Адаптивность для кнопок */
+@media (max-width: 576px) {
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-complete {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .completion-info {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Прогресс-бар */
+.progress-bar {
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #28a745; /* Зеленый цвет прогресса */
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.target-card.almost-completed .progress-fill {
+    background-color: #fd7e14; /* Оранжевый для почти завершенных */
+}
+
+.target-card.completed .progress-fill {
+    background-color: #28a745; /* Зеленый для завершенных */
+}
+
+/* Темная тема для прогресс-бара */
+body.dark-theme .progress-bar {
+    background-color: #404040;
+}
+
+body.dark-theme .progress-fill {
+    background-color: #2e7d32;
+}
+
+body.dark-theme .target-card.almost-completed .progress-fill {
+    background-color: #e65100;
+}
+
+/* targets.css - Круглые кнопки действий */
+
+/* Улучшенные стили для кнопок действий - КРУГЛЫЕ */
+.target-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%; /* ВАЖНО: меняем на 50% для круга */
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+}
+
+.btn-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+.btn-icon.edit {
+    color: #6c757d;
+}
+
+.btn-icon.edit:hover {
+    color: #495057;
+    background-color: #e9ecef;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.15);
+}
+
+.btn-icon.delete {
+    color: #6c757d;
+}
+
+.btn-icon.delete:hover {
+    color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.05);
+    border-color: rgba(220, 53, 69, 0.2);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.1);
+}
+
+/* Темная тема для круглых кнопок */
+body.dark-theme .btn-icon {
+    color: #adb5bd;
+    border-color: #495057;
+    background-color: transparent;
+}
+
+body.dark-theme .btn-icon:hover {
+    background-color: #495057;
+    border-color: #6c757d;
+}
+
+body.dark-theme .btn-icon.edit:hover {
+    color: #f8f9fa;
+    background-color: #495057;
+    box-shadow: 0 4px 12px rgba(173, 181, 189, 0.1);
+}
+
+body.dark-theme .btn-icon.delete:hover {
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-color: rgba(255, 107, 107, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.1);
+}
+
+/* Кнопка завершения цели (остается прямоугольной) */
+.btn-complete {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px; /* Слегка скругленные углы для красоты */
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-complete:hover:not(.disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-complete:active:not(.disabled) {
+    transform: translateY(0);
+}
+
+.btn-complete.disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+    cursor: not-allowed;
+    border-radius: 25px; /* Сохраняем скругление для disabled состояния */
+}
+
+.btn-complete.disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: #e9ecef;
+}
+
+.btn-complete i {
+    font-size: 1rem;
+}
+
+/* Адаптивность для круглых кнопок */
+@media (max-width: 576px) {
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-complete {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        border-radius: 20px; /* Меньше скругление на мобильных */
+    }
+}
+
+/* Дополнительные улучшения для круглых кнопок */
+
+/* Увеличиваем область нажатия на маленьких экранах */
+@media (max-width: 768px) {
+    .btn-icon {
+        min-width: 40px; /* Гарантируем достаточный размер для касания */
+        min-height: 40px;
+    }
+}
+
+/* Анимация нажатия для круглых кнопок */
+.btn-icon:active {
+    transform: translateY(0) scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Плавное появление круглых кнопок */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.target-actions .btn-icon {
+    animation: fadeInScale 0.3s ease both;
+}
+
+/* Задержка для каждой кнопки */
+.target-actions .btn-icon:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.target-actions .btn-icon:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Информационный блок завершения (круглая иконка внутри) */
+.completion-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    border-radius: 25px; /* Согласуем с кнопкой завершения */
+    color: #28a745;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.completion-info i {
+    font-size: 1.1rem;
+    background-color: #28a745;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%; /* Круглая иконка внутри блока */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Темная тема для круглой иконки в блоке завершения */
+body.dark-theme .completion-info i {
+    background-color: #2e7d32;
+}
+
+/* Стили для управления балансом */
+.balance-controls {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.balance-controls h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.balance-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.balance-stat {
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.stat-value.income {
+    color: #28a745;
+}
+
+.stat-value.expense {
+    color: #dc3545;
+}
+
+.stat-value.positive {
+    color: #20c997;
+}
+
+.stat-value.negative {
+    color: #ff6b6b;
+}
+
+.balance-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.balance-actions .btn {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .balance-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .balance-actions {
+        flex-direction: column;
+    }
+    
+    .balance-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Добавляем в конец файла targets.css */
+
+/* Стили для панели информации о балансе */
+.balance-info-panel {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #dee2e6;
+}
+
+.balance-loading {
+    color: #6c757d;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.balance-loading i {
+    font-size: 1rem;
+}
+
+.balance-result {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.balance-result.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #155724;
+    border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.balance-result.success i {
+    color: #28a745;
+}
+
+.balance-result.info {
+    background-color: rgba(23, 162, 184, 0.1);
+    color: #0c5460;
+    border: 1px solid rgba(23, 162, 184, 0.2);
+}
+
+.balance-result.info i {
+    color: #17a2b8;
+}
+
+.balance-result.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #721c24;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.balance-result.error i {
+    color: #dc3545;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Темная тема для панели баланса */
+body.dark-theme .balance-info-panel {
+    background: linear-gradient(135deg, #2d2d2d 0%, #252525 100%);
+    border-color: #404040;
+}
+
+body.dark-theme .balance-loading {
+    color: #adb5bd;
+}
+
+body.dark-theme .balance-result.success {
+    background-color: rgba(46, 125, 50, 0.2);
+    color: #a5d6a7;
+    border-color: rgba(46, 125, 50, 0.3);
+}
+
+body.dark-theme .balance-result.info {
+    background-color: rgba(0, 150, 136, 0.2);
+    color: #80cbc4;
+    border-color: rgba(0, 150, 136, 0.3);
+}
+
+body.dark-theme .balance-result.error {
+    background-color: rgba(198, 40, 40, 0.2);
+    color: #ef9a9a;
+    border-color: rgba(198, 40, 40, 0.3);
+}
